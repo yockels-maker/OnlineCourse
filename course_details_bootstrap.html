@@ -6,8 +6,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>Course Details</h1>
-        <p>Welcome to the Online Course!</p>
+        <h1>{{ course.name }}</h1>
+        <p>Welcome to the course!</p>
+        <h2>Lessons:</h2>
+        <ul>
+            {% for lesson in course.lesson_set.all %}
+                <li>{{ lesson.name }}</li>
+            {% endfor %}
+        </ul>
     </div>
 </body>
 </html>
