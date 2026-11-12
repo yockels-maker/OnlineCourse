@@ -6,14 +6,18 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="display-4">{{ course.name }}</h1>
-        <p class="lead">Welcome to the course!</p>
-        <h2>Lessons:</h2>
-        <ul class="list-group">
-            {% for lesson in course.lesson_set.all %}
-                <li class="list-group-item">{{ lesson.name }}</li>
-            {% endfor %}
-        </ul>
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">{{ course.name }}</h1>
+                <p class="card-text">Welcome to the course!</p>
+                <h2>Lessons:</h2>
+                <ul class="list-group">
+                    {% for lesson in course.lesson_set.all %}
+                        <li class="list-group-item">{{ lesson.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     </div>
 </body>
 </html>
