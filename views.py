@@ -14,4 +14,18 @@ def submit(request, course_id):
 def show_exam_result(request, course_id, submission_id):
     submission = get_object_or_404(Submission, pk=submission_id)
     course = get_object_or_404(Course, pk=course_id)
-    return render(request, 'exam_result_bootstrap.html', {'submission': submission, 'course': course})
+    selected_ids = submission.choices.values_list('id', flat=True)
+    score = 0
+    total = 0
+    for question in course.question_set.all():
+        total += 1
+        if question.is_get_score(selected_ids):
+            score += 1
+    grade = (score / total) * 100 if total > 0 else 0
+    context = {
+        'course': course,
+        'submission': submission,
+        'selected_ids': selected_ids,
+        'grade': grade,
+    }
+    return render(request, 'exam_result_bootstrap.html', context)
