@@ -15,7 +15,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 class LessonAdmin(admin.ModelAdmin):
     inlines = [QuestionInline]
-    list_display = ('name',)
+    list_display = ('title',)
 
 admin.site.register(Course, LessonAdmin)
 admin.site.register(Question, QuestionAdmin)
